@@ -1,0 +1,12 @@
+# Ambiente/ferramentas de terceiros e saídas (fora do grafo e do versionamento)
+pyenv/
+tools/
+Backup/
+Logs/
+ScreenShot/
+Dumps/
+graphify-out/
+*.exe
+*.msi
+__pycache__/
+*.pyc

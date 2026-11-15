@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenGSM Toolkit</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">OpenGSM<span> Toolkit</span></div>
+    <div class="brand-sub" id="brandSub">Device Bridge &amp; Quick Toolkit</div>
+  </div>
+  <div class="top-actions">
+    <span class="pill" id="toolsPill">verificando ferramentas…</span>
+    <button class="btn ghost" id="driversBtn">🧩 Drivers</button>
+    <button class="btn ghost" id="refreshBtn">↻ Atualizar</button>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- Coluna esquerda: aparelhos -->
+  <section class="panel devices">
+    <h2>Aparelhos conectados</h2>
+    <div id="deviceList" class="device-list">
+      <div class="empty">Nenhum aparelho. Conecte via USB (depuração USB ligada).</div>
+    </div>
+  </section>
+
+  <!-- Coluna central: acoes + info -->
+  <section class="panel main">
+    <div class="selbar">
+      <span class="muted">Selecionado:</span>
+      <strong id="selLabel">—</strong>
+    </div>
+
+    <div class="actions" id="actions">
+      <span class="empty">Conecte e selecione um aparelho para ver as opções disponíveis.</span>
+    </div>
+
+    <div class="backends" id="backends">
+      <div class="bk-head">Avançado — EDL / MTK <span class="muted">(ferramentas abertas)</span>
+        <button class="btn sm" id="guideBtn" style="float:right;margin-top:-4px">📘 Guia de modos</button>
+      </div>
+      <div class="bk-body" id="bkBody"><span class="empty">verificando…</span></div>
+    </div>
+
+    <div class="output" id="output">
+      <div class="placeholder">
+        <div class="ph-logo">OpenGSM</div>
+        <p>Selecione um aparelho e escolha uma ação.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coluna direita: logs -->
+  <aside class="panel logs">
+    <h2>Logs recentes</h2>
+    <div id="logList" class="log-list"><div class="empty">—</div></div>
+  </aside>
+</main>
+
+<footer class="statusbar">
+  <span id="statusMsg">Pronto.</span>
+  <span class="ver" id="verLabel"></span>
+</footer>
+
+<!-- Modal de tutorial de modo -->
+<div class="modal-overlay" id="modeModal" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="mTitle">Modo</div>
+        <div class="modal-desc" id="mDesc"></div>
+      </div>
+      <button class="modal-x" id="mClose">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="detect-row">
+        <button class="btn sm" id="mDetect">🔌 Detectar pelo USB</button>
+        <span id="mDetectMsg" class="muted"></span>
+      </div>
+
+      <label class="field">
+        <span>Marca / modelo do aparelho</span>
+        <select id="mBrand"></select>
+      </label>
+
+      <div class="tut-block">
+        <div class="tut-label">Passo a passo</div>
+        <ol id="mSteps" class="steps"></ol>
+      </div>
+
+      <div class="tut-block" id="mSoftWrap">
+        <div class="tut-label">Por software (se o aparelho liga)</div>
+        <ul id="mSoft" class="soft"></ul>
+      </div>
+
+      <div class="tut-block" id="mTpWrap" hidden>
+        <div class="tut-label warn">Test point (último recurso)</div>
+        <p id="mTp" class="muted"></p>
+      </div>
+
+      <p id="mVerify" class="verify"></p>
+      <p id="mWarn" class="warnbox" hidden></p>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn ghost" id="mCancel">Cancelar</button>
+      <button class="btn primary" id="mContinue">Já está no modo — Continuar ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: instalador de drivers -->
+<div class="modal-overlay" id="drvModal" hidden>
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">🧩 Instalador de drivers</div>
+        <div class="modal-desc">Os drivers <b>base</b> instalam automático (confirme o UAC). Os de <b>fabricante</b> abrem a página oficial da marca pra baixar com segurança.</div>
+      </div>
+      <button class="modal-x" id="drvClose">✕</button>
+    </div>
+    <div class="modal-body" id="drvBody"><span class="empty">carregando…</span></div>
+    <div class="modal-foot">
+      <button class="btn ghost" id="drvRefresh">↻ Reverificar</button>
+      <button class="btn primary" id="drvCancel">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
